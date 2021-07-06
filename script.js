@@ -9,10 +9,56 @@ let formData={
   author: '',
 }
 
+class BookCollection {
+  constructor () {
+    this.collection = []
+  }
+
+  addBook(){
+    if (localStorage.getItem('bookdata')){
+      this.collection =  JSON.parse(localStorage.getItem('bookdata'));
+      this.collection.unshift(formData);
+      localStorage.setItem('bookdata', JSON.stringify(this.collection));
+      this.showBooks(this.collection);
+    } else {
+      localStorage.setItem('bookdata', JSON.stringify([formData]))
+      showBooks( JSON.parse(localStorage.getItem('bookdata')));
+    }
+    author.value='';
+    title.value='';
+  }
+
+  showBooks(arr) {
+  const htmlCode = arr.map((book) => `
+    <li>
+      <h2>${book.title}</h2>
+      <span class="author">${book.author}</h2>
+      <button type="button" data-id="${book.id}">Remove</button>
+    </li>
+  `).join('');
+  books.innerHTML = htmlCode;
+
+    const removeButtons = books.querySelectorAll('button');
+    removeButtons.forEach((book) => {
+      book.addEventListener('click', (event) => {
+        this.removeBook(event.target.dataset.id);
+      })
+   });
+  }
+
+  removeBook(bookId) {
+    this.collection = JSON.parse(localStorage.getItem('bookdata')).filter((item) =>item.id!=bookId);
+    localStorage.setItem('bookdata', JSON.stringify(this.collection));
+    this.showBooks(this.collection);
+  }
+}
+
+const library = new BookCollection();
+
 window.addEventListener('load', () => {
   if (localStorage.getItem('bookdata')){
     const books =  JSON.parse(localStorage.getItem('bookdata'));
-    showBooks(books);
+    library.showBooks(books);
   } 
 })
 
@@ -26,47 +72,5 @@ formInputs.forEach((input) => {
 
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  addBook();
+  library.addBook();
 })
-
-// --------------- SHOW BOOKS ---------------------------
-function showBooks(arr) {
-  const htmlCode = arr.map((book) => `
-    <li>
-      <h2>${book.title}</h2>
-      <span class="author">${book.author}</h2>
-      <button type="button" data-id="${book.id}">Remove</button>
-    </li>
-  `).join('');
-  books.innerHTML = htmlCode;
-
-  const removeButtons = books.querySelectorAll('button');
-  removeButtons.forEach((book) => {
-    book.addEventListener('click', (event) => {
-      removeBook(event.target.dataset.id);
-    })
-    
-  });
-}
-
-//  ------------- ADD BOOK -------------------------------
-function addBook(bookObj) {
-  if (localStorage.getItem('bookdata')){
-    const books =  JSON.parse(localStorage.getItem('bookdata'));
-    books.unshift(formData);
-    localStorage.setItem('bookdata', JSON.stringify(books));
-    showBooks(books);
-  } else {
-    localStorage.setItem('bookdata', JSON.stringify([formData]))
-    showBooks( JSON.parse(localStorage.getItem('bookdata')));
-  }
-  author.value='';
-  title.value='';
-}
-
-//  ------------- REMOVE BOOK -------------------------------
-function removeBook(bookId) {
-     const filtered = JSON.parse(localStorage.getItem('bookdata')).filter((item) =>item.id!=bookId);
-     localStorage.setItem('bookdata', JSON.stringify(filtered));
-     showBooks(filtered);
-}
