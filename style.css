@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+header {
+  text-align: center;
+}
+
+.header h1 {
+  color: rgb(10, 131, 245);
+}
+
+.main {
+  /* border: 1px solid #ccc; */
+  width: 50%;
+  margin: 25px auto;
+}
+
+.main form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 25%;
+}
+
+form input,
+form button {
+  margin: 5px;
+  height: 35px;font-size: 1.2rem;
+  padding: 5px;
+}
+
+.error-msg {
+  color: rgb(224, 2, 2);
+  font-size: 0.8rem;
+}
