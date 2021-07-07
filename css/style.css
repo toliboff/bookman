@@ -21,6 +21,16 @@ section {
   width: 95%;
   text-align: center;
 }
+
+a {
+  text-decoration: none;
+  color: #494949
+}
+a:hover {
+  text-decoration: underline;
+  color: #494949
+}
+
 /* HEADER */
 .date{
   text-align: right;
