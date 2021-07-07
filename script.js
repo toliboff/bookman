@@ -31,7 +31,7 @@ class BookCollection {
   showBooks(arr) {
   const htmlCode = arr.map((book) => `
     <li>
-      <span>"${book.title}"</span>
+      <span>"${book.title}" by &nbsp;</span>
       <span class="author">${book.author}</span>
       <button type="button" data-id="${book.id}">Remove</button>
     </li>
