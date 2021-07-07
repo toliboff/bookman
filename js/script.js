@@ -18,12 +18,15 @@ class BookCollection {
   addBook(){
     if (localStorage.getItem('bookdata')){
       this.collection =  JSON.parse(localStorage.getItem('bookdata'));
-      this.collection.unshift(formData);
+      
+      if (!this.collection.some(a=>a.author==formData.author && a.title==formData.title)) {
+        this.collection.unshift(formData);
+      }      
       localStorage.setItem('bookdata', JSON.stringify(this.collection));
       this.showBooks(this.collection);
     } else {
       localStorage.setItem('bookdata', JSON.stringify([formData]))
-      showBooks( JSON.parse(localStorage.getItem('bookdata')));
+      this.showBooks( JSON.parse(localStorage.getItem('bookdata')));
     }
     author.value='';
     title.value='';
@@ -65,7 +68,7 @@ window.addEventListener('DOMContentLoaded', () => {
     library.showBooks(books);
   } 
  
-  if (localStorage.getItem('bookdata')=='[]'){
+  if (localStorage.getItem('bookdata')=='[]' || !localStorage.getItem('bookdata')){
     books.innerHTML='<li>No books</li>'
   }
 })
