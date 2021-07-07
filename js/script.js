@@ -111,8 +111,7 @@ links.forEach((link) => {
 });
 
 
-let DateTime = luxon.DateTime;
-let today = DateTime.local();
+
 
 function getNumberSuffix(num) {
   const th = 'th'
@@ -131,7 +130,12 @@ function getNumberSuffix(num) {
     default:  return th
   }
 }
-let modified=today.toLocaleString({...DateTime.DATETIME_MED_WITH_SECONDS, month:'long',}).split(" ");
-let dateNum=parseInt(modified[1]);
-modified[1]=dateNum+getNumberSuffix(dateNum);
-date.innerHTML=modified.join(" ");
+
+setInterval(()=>{
+  let DateTime = luxon.DateTime;
+  let today = DateTime.local();
+  let modified=today.toLocaleString({...DateTime.DATETIME_MED_WITH_SECONDS, month:'long',}).split(" ");
+  let dateNum=parseInt(modified[1]);
+  modified[1]=dateNum+getNumberSuffix(dateNum);
+  date.innerHTML=modified.join(" ");
+}, 1000)
