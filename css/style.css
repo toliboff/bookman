@@ -21,6 +21,13 @@ section {
   width: 95%;
   text-align: center;
 }
+/* HEADER */
+.date{
+  text-align: right;
+  padding: 5px;
+  color: #494949;
+  font-weight:700;
+}
 
 /* NAVIGATION */
 .navigation {

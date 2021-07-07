@@ -3,6 +3,7 @@ const form= document.getElementById('add-form');
 const title= document.getElementById('title');
 const author= document.getElementById('author');
 const addBtn= document.getElementById('addBtn');
+const date = document.getElementById('date');
 
 let formData={
   title:'',
@@ -63,7 +64,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const books =  JSON.parse(localStorage.getItem('bookdata'));
     library.showBooks(books);
   } 
-  console.log( localStorage.getItem('bookdata')=='[]');
+ 
   if (localStorage.getItem('bookdata')=='[]'){
     books.innerHTML='<li>No books</li>'
   }
@@ -106,3 +107,28 @@ links.forEach((link) => {
   })
 });
 
+
+let DateTime = luxon.DateTime;
+let today = DateTime.local();
+
+function getNumberSuffix(num) {
+  const th = 'th'
+  const rd = 'rd'
+  const nd = 'nd'
+  const st = 'st'
+
+  if (num === 11 || num === 12 || num === 13) return th
+
+  let lastDigit = num.toString().slice(-1)
+
+  switch (lastDigit) {
+    case '1': return st
+    case '2': return nd
+    case '3': return rd
+    default:  return th
+  }
+}
+let modified=today.toLocaleString({...DateTime.DATETIME_MED_WITH_SECONDS, month:'long',}).split(" ");
+let dateNum=parseInt(modified[1]);
+modified[1]=dateNum+getNumberSuffix(dateNum);
+date.innerHTML=modified.join(" ");
