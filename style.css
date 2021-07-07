@@ -2,19 +2,39 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 header {
   text-align: center;
 }
 
 .header h1 {
-  color: rgb(10, 131, 245);
+  color: rgb(101, 103, 104);
 }
 
 .main {
-  /* border: 1px solid #ccc; */
   width: 50%;
   margin: 25px auto;
+}
+
+.books{
+  border: 1px solid rgb(168, 165, 165);
+  border-radius: 3px;
+}
+
+.books li {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.books li:nth-child(odd) {
+  background-color: rgb(216, 218, 228);
+}
+
+.books button {
+  margin-left: auto;
+  padding: 5px;
 }
 
 .main form {
@@ -28,7 +48,27 @@ form button {
   margin: 5px;
   height: 35px;font-size: 1.2rem;
   padding: 5px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
 }
+
+form input:focus {
+  outline: none;
+  border: 1px solid rgb(150, 152, 245);;
+}
+
+button[type='submit'] {
+  align-self: flex-end;
+  padding: 5px 25px;
+  cursor: pointer;
+  border: none;
+  background-color: rgb(102, 104, 241);
+  border-radius: 3px;
+  color:#fff;
+}
+
+button[type='submit']:hover {
+  background-color: rgb(134, 136, 247);
 
 .error-msg {
   color: rgb(224, 2, 2);
