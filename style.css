@@ -4,22 +4,70 @@
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
-header {
+
+body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h2 {
+  margin: 25px auto 50px;
+  font-size: 1.7rem;
+  color: #494848;
+}
+
+section {
+  width: 95%;
   text-align: center;
 }
 
-.header h1 {
-  color: rgb(101, 103, 104);
+/* NAVIGATION */
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 15px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 5px #ccc;
 }
 
-.main {
-  width: 50%;
-  margin: 25px auto;
+.logo {
+  font-weight: 900;
+  color: rgb(71, 153, 247);
+}
+.menu {
+  display: flex;
+  list-style: none;
+}
+
+.menu li {
+  padding: 3px 15px;
+  border-right: 1px solid #ccc;
+  cursor: pointer;
+  color: rgb(117, 114, 114);
+}
+
+.menu li:last-child {
+  border-right: none;
+}
+
+.menu li:hover {
+  color: #000;
+}
+
+/* BOOK LIST */
+.list {
+  display: none;
+  flex-direction: column;
+  padding: 15px;
+  margin: 15px auto;
 }
 
 .books{
   border: 1px solid rgb(168, 165, 165);
   border-radius: 3px;
+  margin-top: 15px;
 }
 
 .books li {
@@ -34,20 +82,30 @@ header {
 
 .books button {
   margin-left: auto;
-  padding: 5px;
+  padding: 5px 15px;
+  cursor: pointer;
 }
 
-.main form {
+/* ADD FORM */
+.add-new {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+
+.add-form {
   display: flex;
   flex-direction: column;
-  padding: 20px 25%;
+  width: 45%;
+  margin: 0 auto;
 }
 
 form input,
 form button {
-  margin: 5px;
+  margin: 15px;
   height: 35px;font-size: 1.2rem;
-  padding: 5px;
+  padding: 5px 15px;
   border-radius: 3px;
   border: 1px solid #ccc;
 }
@@ -69,8 +127,46 @@ button[type='submit'] {
 
 button[type='submit']:hover {
   background-color: rgb(134, 136, 247);
+}
 
-.error-msg {
-  color: rgb(224, 2, 2);
-  font-size: 0.8rem;
+/* CONTACT */
+.contact {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  width: 60%;
+  font-size: 1.4rem;
+  margin: auto;
+}
+
+.contact p,
+.contact ul{
+  text-align: left;
+  margin-top: 25px;
+  list-style-type: none;
+ 
+}
+
+.contact ul {
+  margin-left: 35px;
+  line-height: 2rem;
+}
+
+.contact li:before {
+  content: ' - ';
+}
+.footer {
+  margin-top: auto;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  background-color: rgb(233, 227, 227);
+}
+
+.show {
+  display: flex;
+}
+
+.active {
+  color:rgb(16, 156, 221) !important;
 }

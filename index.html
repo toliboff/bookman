@@ -8,20 +8,46 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="header">
-    <h1>All awesome books</h1>
-  </header>
-  <main class="main">
+  <nav class="navigation">
+    <span class="logo">Awesome books</span>
+    <ul class="menu" id="menu">
+      <li data-id="list" class="active">List</li>
+      <li data-id="add-new" >Add new</li>
+      <li data-id="contact">Contact</li>
+    </ul>
+  </nav>
+
+  <section class="list show" id="list">
+    <h2>All awesome books</h2>
       <ul class='books' id='books'>
       </ul>
-    <form id="add-form">
+  </section>
+
+  <section id="add-new" class="add-new">
+    <h2>Add a new book</h2>
+    <form id="add-form" class="add-form">
       <input type="text" name="title" id="title" placeholder="Title" autocomplete="off" required>
       <input type="text" name="author" id="author" placeholder="Author" autocomplete="off" required>
       <button type="submit">Add</button>
       <span class='error-msg' id='error-msg'></span>
     </form>
-  </main>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Contact information</h2>
+    <p>Do you have any questions or you just want to say "Hello"?</p>
+    <p>You can reach out to us!</p>
+    <ul>
+      <li>Our email: support@awesomebooks.com</li>
+      <li>Our phone number: 0013586534422</li>
+      <li>Our address: Wall Street 77, 84503 New York, USA</li>
+    </ul>
+  </section>
   
+  
+  <footer class="footer">
+    &copy; 2021 <a href="">toliboff</a>
+  </footer>
   <script src="script.js"></script>
 </body>
 </html>

@@ -50,16 +50,23 @@ class BookCollection {
     this.collection = JSON.parse(localStorage.getItem('bookdata')).filter((item) =>item.id!=bookId);
     localStorage.setItem('bookdata', JSON.stringify(this.collection));
     this.showBooks(this.collection);
+    if (this.collection.length===0){
+      books.innerHTML='<li>No books</li>'
+    }
   }
 }
 
 const library = new BookCollection();
 
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('bookdata')){
     const books =  JSON.parse(localStorage.getItem('bookdata'));
     library.showBooks(books);
   } 
+  console.log( localStorage.getItem('bookdata')=='[]');
+  if (localStorage.getItem('bookdata')=='[]'){
+    books.innerHTML='<li>No books</li>'
+  }
 })
 
 
@@ -74,3 +81,28 @@ form.addEventListener('submit', (evt) => {
   evt.preventDefault();
   library.addBook();
 })
+
+const menu = document.getElementById("menu");
+const links = menu.querySelectorAll('li');
+
+links.forEach((link) => {
+  link.addEventListener('click', (event) => {
+    document.querySelectorAll('section').forEach((section) => {
+      if (section.id==event.target.dataset.id){
+        section.classList.add('show');
+      } else {
+        section.classList.remove('show');
+      }
+    })
+
+    menu.querySelectorAll('li').forEach((li) => {
+      if (li.dataset.id==event.target.dataset.id){
+        li.classList.add('active');
+      } else {
+        li.classList.remove('active');
+      }
+    })
+    
+  })
+});
+
